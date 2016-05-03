@@ -1,0 +1,230 @@
+html{ height: 100%; }
+body{
+	height: 100%;
+	margin: 0;
+	font-family: Helvetica, Arial, sans-serif;
+}
+input{ font: 1em Helvetica, Arial, sans-serif;}
+
+.list{
+	margin: 0;
+	padding: 0;
+	font-size: 1.5em;
+}
+.list:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+#tablist{
+	position: absolute;
+	position: fixed;
+	bottom: 1em;
+	left: 1em;
+}
+#modeslist{
+	position: absolute;
+	position: fixed;
+	bottom: 1.5em;
+	right: 1.5em;
+}
+
+.list > div {
+	border: 1px solid silver;
+	border-radius: .3em;
+	float: left;
+	padding: .1em .3em 0;
+	margin-right: .1em;
+	background-color: white;
+	cursor: pointer;
+}
+.list > div.active{ background-color: #CCF; }
+
+.tab:not(.active){ display: none; }
+
+#tabs{
+	background: white;
+}
+
+#render{
+	padding: .1em .3em;
+	font-size: 2em;
+}
+#render > * { cursor: pointer; }
+
+.lambda{ display:inline-block; }
+.lambda-space{ width : 0.5ex; }
+#render .lambda-redex{
+	padding-top: 2px;
+	position: relative;
+}
+
+.highlight{ border-radius: .2em; }
+#render .highlight.hover{ box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.7); }
+#render .lambda:not(.highlight){ background: none !important; }
+
+#render, #history > div{ white-space: nowrap; }
+
+#tooltip{
+	position: absolute;
+	margin-top: 1em;
+	margin-left: -.4em;
+	border: 1px solid silver;
+	border-radius: .4em;
+	padding: .4em;
+	white-space: nowrap;
+}
+#tooltip::before{
+	content: '';
+	position: absolute;
+	border-top: 0;
+	border-bottom: 1em solid silver;
+	border-left: .5em solid transparent;
+	border-right: .5em solid transparent;
+	bottom: 100%;
+}
+#tooltip input{
+	outline: 0;
+	border: 1px solid #F00;
+	border-radius: .2em;
+	padding: 1px .2em;
+	background: white;
+}
+#tooltip input.ok{ border: 1px solid #0C0; }
+
+#history{
+	padding: 0 .6em;
+	border-top: 1px solid black;
+}
+#history > div{
+	margin-top: .2em;
+	cursor: pointer;
+}
+
+#input{
+	margin: 0 .4em .2em;
+	padding: .2em .2em 0;
+	border-bottom: 1px solid black;
+}
+#input input{
+	width: 100%;
+	border: 0;
+	outline: 0;
+	font-size: 2em;
+}
+
+#definitions{ padding: .3em .5em; }
+
+#definitions button{
+	float: right;
+	background: #FF0000;
+	border: 0;
+	padding: 0.3em 1em;
+	border-radius: 0.3em;
+	color: white;
+	outline: 0;
+	cursor: pointer;
+}
+
+.definitions-table{
+	width: 100%;
+	border-spacing: 0;
+	table-layout: fixed;
+	margin: .5em 0;
+	border: 1px solid silver;
+	border-radius: .5em;
+}
+.definitions-table tr:nth-child(even){ background: #EEE; }
+.definitions-table td{
+	padding: 0 .2em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.definitions-table td:first-child{ width: 10%; }
+
+.definitions-input{ float: left; }
+.definitions-input > div{
+	margin: 0 .2em;
+	padding: 0 1px;
+	border-bottom: 1px solid black;
+}
+.definitions-input input{
+	width: 100%;
+	border: 0;
+	outline: 0;
+}
+
+.msg{
+	position: absolute;
+	position: fixed;
+	bottom: 1em;
+	left: 1em;
+	right: 1em;
+	background: #FFE5E5;
+	border: 1px solid red;
+	color: red;
+	padding: .3em;
+	border-radius: .3em;
+	cursor: pointer;
+}
+
+#upgrade{
+	background: #fee000;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: .1em;
+}
+.flexbox.localstorage #upgrade{ display: none; }
+
+/* Progressively Enhance by flexbox */
+.flexbox #upgrade{
+	position: static;
+	flex: none;
+}
+.flexbox body{
+	display: flex;
+	flex-direction: column;
+}
+.flexbox #main{
+	flex: 1;
+	display: block;
+	position: relative;
+}
+.flexbox #modeslist{
+	position: absolute;
+}
+.flexbox #tabs{
+	flex: none;
+	max-height: 50%;
+	border-top: 1px solid silver;
+	position: relative;
+	overflow-y: visible;
+	display: flex;
+	flex-direction: column;
+}
+.flexbox .tab{
+	flex: auto;
+	overflow: auto;
+}
+
+
+.flexbox #tablist{
+	position: absolute;
+	bottom: 100%;
+}
+.flexbox #tablist{
+	margin: 0;
+}
+.flexbox #tablist > div:first-child{
+	display: none;
+}
+.flexbox #tablist > div{
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	background: white;
+}
+.flexbox #tablist > div.active{
+	border-bottom: 1px solid white;
+}
