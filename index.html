@@ -56,12 +56,14 @@
 		function msg(msg){
 			$('.msg').remove();
 			$('<div>').addClass('msg').css({opacity:0}).text(msg).appendTo('body')
-				.animate({opacity: 1}, 1000)
+				.animate({opacity: 1}, 400)
 				.delay(1000)
-				.animate({opacity:0}, 1000)
+				.animate({opacity:0}, 400)
 				.queue(function(){$(this).remove();})
 				.on('click', function(){
-					$(this).dequeue().dequeue();
+					$(this).clearQueue()
+						.animate({opacity:0}, 400)
+						.queue(function(){$(this).remove();});
 				});
 		}
 
@@ -143,9 +145,10 @@
 				if(e.which == 13)
 					try{
 						var enc = $('input[name=definitions-encoding]:checked').val();
+						tree = parse($(this).val(), dfn.env[enc]);
 						hist();
 						$('<hr />').prependTo('#history');
-						_render(tree = parse($(this).val(), dfn.env[enc]));
+						_render(tree);
 						$(this).val('');
 						$('#tablist > div').eq(0).filter(':visible').click();
 					}catch(e){ msg(e); }
