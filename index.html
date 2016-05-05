@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title></title>
 	<link rel="stylesheet" href="css2.css" />
-	<script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 	<script src="modernizr.js"></script>
 	<script src="environment.js"></script>
 	<script src="lambda.js"></script>
@@ -66,10 +66,10 @@
 		}
 
 		$(function(){
-			tree = '';
+			var tree = '';
 
 			_render(tree);
-			dfn = dfns();
+			var dfn = dfns();
 			dfn.user = localStorage.dfn ? JSON.parse(localStorage.dfn) : {};
 			definition_table(dfn.church, 'enc');
 			definition_table(dfn.common, 'com');
@@ -108,6 +108,7 @@
 
 			$('#history').on('click', 'div', function(){
 				$('#input input').val($(this).text());
+				$('#tablist > div').eq(1).click();
 			});
 
 			$('.modeslist').on('click', 'div', function(){
@@ -146,7 +147,7 @@
 						$('<hr />').prependTo('#history');
 						_render(tree = parse($(this).val(), dfn.env[enc]));
 						$(this).val('');
-						$('#tablist').children().eq(0).filter(':visible').click();
+						$('#tablist > div').eq(0).filter(':visible').click();
 					}catch(e){ msg(e); }
 			});
 			$('.definitions-input input').on('keydown', function(e){
@@ -195,8 +196,8 @@
 			<table id="definitions-enc-table" class="definitions-table"></table>
 			<table id="definitions-com-table" class="definitions-table"></table>
 			<table id="definitions-usr-table" class="definitions-table"></table>
-			<div class="definitions-input" style="width: 10%;"><div><input type="text" spellcheck="false" /></div></div>
-			<div class="definitions-input" style="width: 90%;"><div><input type="text" spellcheck="false" /></div></div>
+			<div class="definitions-input" style="width: 10%;"><div><input type="text" spellcheck="false" placeholder="Name"/></div></div>
+			<div class="definitions-input" style="width: 90%;"><div><input type="text" spellcheck="false" placeholder="Definition"/></div></div>
 			<div style="clear:both;"></div>
 		</div>
 
